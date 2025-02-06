@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj.simulation.JoystickSim;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants.Elevator;
+import frc.robot.commands.CoralScore;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.MoveToSetpoint;
 import frc.robot.commands.RunIntake;
@@ -78,7 +79,7 @@ public class RobotContainer {
     //Move to 3.0 (wherever that also is)
     new JoystickButton(m_driverController, XboxController.Button.kX.value)
                 .whileTrue(new MoveToSetpoint(3));
-    m_simulatorController.button(3).whileTrue(new MoveToSetpoint(3));
+    m_simulatorController.button(3).onTrue(new MoveToSetpoint(3));
 
     //Run Intake
     new JoystickButton(m_driverController, XboxController.Button.kY.value)
@@ -89,6 +90,10 @@ public class RobotContainer {
     //new JoystickButton(m_driverController, XboxController.Button.kY.value)
     //            .whileTrue(new RunOuttake(intake));
     m_simulatorController.button(5).whileTrue(new RunOuttake(intake));
+
+
+    // Testing for CoralScore
+    m_simulatorController.button(6).onTrue(new CoralScore(true, true));
 
   }
 

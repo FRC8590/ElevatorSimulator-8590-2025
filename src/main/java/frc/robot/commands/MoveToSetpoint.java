@@ -27,7 +27,7 @@ public class MoveToSetpoint extends Command {
   @Override
   public void execute() {
     Robot.elevator.updateSetpoint(setpoint);
-
+    System.out.println("Attempting to move to " + setpoint);
   }
 
   // Called once the command ends or is interrupted.
