@@ -7,6 +7,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.subsystems.Elevator;
 
 /** An example command that uses an example subsystem. */
 public class CoralScore extends Command {
@@ -34,11 +35,16 @@ public class CoralScore extends Command {
 
     if (isLeft && isTop)
     {                                           // Level 3 left side
-      System.out.println("Got to command");
-      Commands.parallel( //                           Move to 3.0                       Wait 3 seconds                    Return to 0
-        new SequentialCommandGroup(new MoveToSetpoint(3.0), Commands.waitSeconds(3), new MoveToSetpoint(0))
-        /* Second part of command will go here. Part that will menuver the robot to the reef */);
-    }
+      System.out.println("Running sequential command");
+      //                           Move to 3.0                       Wait 3 seconds                    Return to 0
+      new SequentialCommandGroup(
+        new MoveToSetpoint(3.0), 
+        Commands.waitSeconds(3), 
+        new MoveToSetpoint(0)
+        ).schedule();
+        /* Second part of command will go here. Part that will menuver the robot to the reef */
+    
+      }
     else if (!isLeft && isTop)
     {                                           // Level 3 right side
       Commands.parallel(

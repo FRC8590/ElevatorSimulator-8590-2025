@@ -26,8 +26,9 @@ public class MoveToSetpoint extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.elevator.updateSetpoint(setpoint);
+    
     System.out.println("Attempting to move to " + setpoint);
+    Robot.elevator.updateSetpoint(setpoint);
   }
 
   // Called once the command ends or is interrupted.
