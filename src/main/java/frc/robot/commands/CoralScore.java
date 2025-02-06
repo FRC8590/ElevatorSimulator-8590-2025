@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.subsystems.Elevator;
 
@@ -29,39 +30,60 @@ public class CoralScore extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    // set the height point of the elevator
-    // change light color eventualy
-    // change x/y position depending on if it's left or right
+    /**
+     * set the height point of the elevator
+     * change light color eventualy
+     * change x/y position depending on if it's left or right
+     * CURRENTLY PLACEHOLDERS FOR TESTING, WILL CHANGE TO DO REAL STUFF LATER (hopefully)
+     */
 
     if (isLeft && isTop)
     {                                           // Level 3 left side
       System.out.println("Running sequential command");
-      //                           Move to 3.0                       Wait 3 seconds                    Return to 0
-      new SequentialCommandGroup(
-        new MoveToSetpoint(3.0), 
-        Commands.waitSeconds(3), 
-        new MoveToSetpoint(0)
-        ).schedule();
+      new ParallelCommandGroup(
+        new SequentialCommandGroup(
+          new MoveToSetpoint(3.0), // Move elevator up 3
+          Commands.waitSeconds(3), // wait 3 seconds
+          new MoveToSetpoint(0) // move elevator down 0
+        )
         /* Second part of command will go here. Part that will menuver the robot to the reef */
-    
-      }
+      ).schedule();
+    }
     else if (!isLeft && isTop)
     {                                           // Level 3 right side
-      Commands.parallel(
-        new SequentialCommandGroup(new MoveToSetpoint(3.0), Commands.waitSeconds(3), new MoveToSetpoint(0))
-        /* Second part of command will go here. Part that will menuver the robot to the reef */);
+      System.out.println("Running sequential command");
+      new ParallelCommandGroup(
+        new SequentialCommandGroup(
+          new MoveToSetpoint(3.0), // Move elevator up 3
+          Commands.waitSeconds(3), // wait 3 seconds
+          new MoveToSetpoint(0) // move elevator down 0
+        )
+        /* Second part of command will go here. Part that will menuver the robot to the reef */
+      ).schedule();
     }
     else if (isLeft && !isTop)
     {                                           // Level 2 left side
-      Commands.parallel(
-        new SequentialCommandGroup(new MoveToSetpoint(2.0), Commands.waitSeconds(3), new MoveToSetpoint(0))
-        /* Second part of command will go here. Part that will menuver the robot to the reef */);
+      System.out.println("Running sequential command");
+      new ParallelCommandGroup(
+        new SequentialCommandGroup(
+          new MoveToSetpoint(2.0), // Move elevator up 3
+          Commands.waitSeconds(3), // wait 3 seconds
+          new MoveToSetpoint(0) // move elevator down 0
+        )
+        /* Second part of command will go here. Part that will menuver the robot to the reef */
+      ).schedule();
     }
     else
     {                                           // Level 2 right side
-      Commands.parallel(
-        new SequentialCommandGroup(new MoveToSetpoint(2.0), Commands.waitSeconds(3), new MoveToSetpoint(0))
-        /* Second part of command will go here. Part that will menuver the robot to the reef */);
+      System.out.println("Running sequential command");
+      new ParallelCommandGroup(
+        new SequentialCommandGroup(
+          new MoveToSetpoint(2.0), // Move elevator up 3
+          Commands.waitSeconds(3), // wait 3 seconds
+          new MoveToSetpoint(0) // move elevator down 0
+        )
+        /* Second part of command will go here. Part that will menuver the robot to the reef */
+      ).schedule();
     }
     
   }
