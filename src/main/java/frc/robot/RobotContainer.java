@@ -43,7 +43,6 @@ public class RobotContainer {
 
   private final JoystickSim simulatorJoystick = new JoystickSim(0);
 
-  private Intake intake = new Intake();
 
   //private static Elevator m_elevator;
 
@@ -83,13 +82,13 @@ public class RobotContainer {
 
     //Run Intake
     new JoystickButton(m_driverController, XboxController.Button.kY.value)
-                .whileTrue(new RunIntake(intake));
-    m_simulatorController.button(4).whileTrue(new RunIntake(intake));
+                .whileTrue(new RunIntake(Constants.intake));
+    m_simulatorController.button(4).whileTrue(new RunIntake(Constants.intake));
 
     //Run Outtake
     //new JoystickButton(m_driverController, XboxController.Button.kY.value)
     //            .whileTrue(new RunOuttake(intake));
-    m_simulatorController.button(5).whileTrue(new RunOuttake(intake));
+    m_simulatorController.button(5).whileTrue(new RunOuttake(Constants.intake));
 
 
     // Testing for CoralScore

@@ -16,30 +16,38 @@ public class Intake extends SubsystemBase {
   /** Creates a new Intake. */
 
   private SparkMax intakeMotor = new SparkMax(Constants.Passthrough.kIntakeMotorID, MotorType.kBrushless);
+  private double intakeVelocity = 0;
+
 
   public Intake() {
     
   }
 
   public void run(){
-    intakeMotor.set(Constants.Passthrough.kIntakeSpeed);    
+    intakeVelocity = 0.79;    
   }
 
   public void runBackward(){
-    intakeMotor.set(-Constants.Passthrough.kIntakeSpeed);
+    intakeVelocity = -0.79;
+    
+    System.out.println("Subsystem velocity to -0.79");
   }
 
   public void stop(){
-    intakeMotor.set(0);
+    intakeVelocity = 0;
+
+    System.out.println("Subsystem velocity to 0");
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    intakeMotor.set(intakeVelocity);
     log();
   }
 
   public void log(){
     SmartDashboard.putNumber("Intake/Outtake Speed", intakeMotor.get());
+    
   }
 }

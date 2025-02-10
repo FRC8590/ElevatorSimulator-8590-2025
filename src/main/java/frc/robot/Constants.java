@@ -4,6 +4,7 @@
 package frc.robot;
 
 import edu.wpi.first.math.util.Units;
+import frc.robot.subsystems.Intake;
 
 public class Constants {
 
@@ -40,5 +41,9 @@ public class Constants {
 	public static final int kElevatorMasterID = 1;
 	public static final int kElevatorFollowerID = 2;
 
+	
+
 	}
+
+	public static Intake intake = new Intake();
 }
